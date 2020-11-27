@@ -1,6 +1,11 @@
-const actionWrapper = async (action, payload) => {
+const actionWrapper = async (fetch, action) => {
+    dispatch(PendingStore.add(action))
     try{
-        c
+       const responce = await fetch();
+       dispatch(PendingStore.remove(action))
+       dispatch(action(responce))
     }
-
+    catch(error){
+        dispatch(ErrorsStore.add(action, error))
+    }
 } 
