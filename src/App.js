@@ -10,7 +10,7 @@ const App = () => {
   const todos = useSelector(state => state.todos || null);
   const error = useSelector(state => state.errors[0] || null)
   const pending = useSelector(state => state.pending[0] || null)
-  const fetchTodos = () => actionWrapper(addTodo, () => fetch('https://jsonplacedholder.typicode.com/todos/1').then(res => res.json()))
+  const fetchTodos = () => actionWrapper(addTodo, () => fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json()))
   const [text, setText] = useState("")
 
 
