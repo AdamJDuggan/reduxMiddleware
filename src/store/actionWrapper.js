@@ -7,7 +7,7 @@ const actionWrapper = (action, fetch) => {
         store.dispatch(addPending(action.toString()))
     try{
         const responce = await fetch();
-        store.dispatch(removePending(action.toString()))
+        //store.dispatch(removePending(action.toString()))
         store.dispatch(action(responce))
         }
     catch(error){

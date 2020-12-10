@@ -1,18 +1,22 @@
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {addTodo} from "./store/TodosStore";
 import actionWrapper from "./store/actionWrapper";
+import usePending from "./store/usePending";
 
 
 const App = () => {
   const dispatch = useDispatch();
   const todos = useSelector(state => state.todos || null);
   const error = useSelector(state => state.errors[0] || null)
-  const pending = useSelector(state => state.pending[0] || null)
+  //const pending = useSelector(state => state.pending[0] || null)
   const fetchTodos = () => actionWrapper(addTodo, () => fetch('https://jsonplaceholder.typicode.com/todos/1').then(res => res.json()))
   const [text, setText] = useState("")
 
+  const pending = usePending([ "products", "products",]);
+  console.log(pending)
+  
 
   return (
     <div className="App">

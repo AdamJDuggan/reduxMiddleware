@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const pendingSlice = createSlice({
   name: 'todos',
-  initialState: [],
+  initialState: ["users/addUser", "users/removeUser", "characters/update"],
   reducers: {
     addPending: (state, action) => {
       return [...state, action.payload] 
