@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const pendingSlice = createSlice({
-  name: 'todos',
-  initialState: ["users/addUser", "users/removeUser", "characters/update"],
+  name: 'pending',
+  initialState: [],
   reducers: {
     addPending: (state, action) => {
       return [...state, action.payload] 
@@ -14,6 +14,6 @@ const pendingSlice = createSlice({
 
 export  const {addPending, removePending}  = pendingSlice.actions
 
-export default pendingSlice.reducer;
+export const PendingReducer =  pendingSlice.reducer;
 
   
