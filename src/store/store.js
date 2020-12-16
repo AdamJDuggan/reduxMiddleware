@@ -18,21 +18,20 @@ const globalStore = configureStore({
 export default globalStore;
 
 //Stores  
-const stores = [
-  {type: "todos", actions: TodosStore}
- ]
+const stores = {
+ TodosStore
+}
 
 const reduxAsync = (actionPath, fetch) => {
-    const store = stores.find(store => store.type === actionPath.split("/")[0]) || null;
-    const action = store ? store.actions[actionPath.split("/")[1]]|| null : null; 
-   
-    if(store && action){ 
+    const store = stores[actionPath.split(".")[0]] || null;
+    const action = store ? store[actionPath.split(".")[1]]|| null : null; 
+    if(action){ 
       return async dispatch => {
         globalStore.dispatch(addPending(actionPath))
     try{
         const responce = await fetch();
         globalStore.dispatch(removePending(actionPath))
-        globalStore.dispatch(store.actions[actionPath.split("/")[1]](responce))
+        globalStore.dispatch(action(responce))
         }
     catch(error){
         globalStore.dispatch(removePending(actionPath))
